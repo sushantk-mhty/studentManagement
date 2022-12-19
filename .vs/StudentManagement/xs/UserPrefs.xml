@@ -1,18 +1,20 @@
 ﻿<Properties StartupConfiguration="{2E6E0D0D-C86B-4A7D-B506-DCD866ADAA31}|Default">
   <MonoDevelop.Ide.ItemProperties.StudentManagement PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StudentManagement/Views/Shared/_Layout.cshtml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StudentManagement/Controllers/StudentController.cs">
     <Files>
       <File FileName="StudentManagement/Controllers/HomeController.cs" />
       <File FileName="StudentManagement/Services/StudentServices.cs" />
-      <File FileName="StudentManagement/Controllers/StudentController.cs" />
+      <File FileName="StudentManagement/Controllers/StudentController.cs" Line="27" Column="10" />
       <File FileName="StudentManagement/Views/Student/StudentRecords.cshtml" />
       <File FileName="StudentManagement/Models/AllModel.cs" />
-      <File FileName="StudentManagement/Views/Shared/_Layout.cshtml" Line="12" Column="5" />
+      <File FileName="StudentManagement/Views/Shared/_Layout.cshtml" Line="38" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="StudentManagement" expanded="True">
+          <Node name="StudentManagement" expanded="True" selected="True">
             <Node name="StudentManagement" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
@@ -28,10 +30,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

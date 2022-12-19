@@ -16,7 +16,6 @@ namespace StudentManagement.Services
             _configuration = configuration;
             ConnectionString = _configuration.GetConnectionString("DefaultConnectionString");
             providerName = "System.Data.SqlClient";
-
         }
 
         public string ConnectionString { get; }
@@ -86,10 +85,7 @@ namespace StudentManagement.Services
                     con.Open();
                     var std = con.Query<Student>("sp_putStudentRecord", new { StudentId=model.StudentId, FullName = model.FullName, EmailAddress = model.EmailAddress, City = model.City}, commandType: CommandType.StoredProcedure).ToList();
                     if (std != null && std.FirstOrDefault().Response == "Updated Successfully")
-                    {
                         result = "Updated Successfully";
-
-                    }
                     con.Close();
                     return result;
                 }
@@ -113,9 +109,7 @@ namespace StudentManagement.Services
                     con.Open();
                     var std = con.Query<Student>("sp_deleteStudentRecord", new { StudentId = studentId }, commandType: CommandType.StoredProcedure).ToList();
                     if (std != null && std.FirstOrDefault().Response == "Deleted Successfully")
-                    {
                         result = "Deleted Successfully";
-                    }
                     con.Close();
                     return result;
                 }
