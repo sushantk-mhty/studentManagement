@@ -1,0 +1,119 @@
+
+@model StudentManagement.Models.AllModel
+@{
+    ViewData["Title"] = "StudentRecords";
+}
+
+<h1>Student Records</h1>
+
+
+<div class="text-center">
+
+    <div class="row">
+        <div class="col-lg-12 m-4">
+            @{
+                if (TempData["SuccessMsg"] != null)
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Student Management!</strong> @TempData["SuccessMsg"].
+                    </div>
+                }
+                else if (TempData["ErrorMsg"] != null)
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Student Management!</strong> @TempData["ErrorMsg"]
+                    </div>
+                }
+            }
+        </div>
+
+
+
+        <div class="col-md-12" style="text-align:left">
+            <form method="post" asp-area="" asp-controller="Student" asp-action="PostnPutStudentRecord">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="forfullname">Full Name</label>
+                    <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Enter full name">
+                    <input type="hidden" id="StudentId" name="StudentId" />
+                </div>
+                <div class="form-group">
+                    <label for="foreMail">Email address</label>
+                    <input type="email" class="form-control" id="EmailAddress" name="EmailAddress" aria-describedby="emailHelp" placeholder="Enter Email address">
+                </div>
+                <div class="form-group">
+                    <label for="foreCity">City</label>
+                    <input type="text" class="form-control" id="City" name="City" placeholder="Enter City">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary m-2">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">City</th>
+                <th scope="col">CreatedOn</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model.StudentRecords != null && Model.StudentRecords.Count > 0)
+                {
+                    foreach (var item in Model.StudentRecords)
+                    {
+                        <tr>
+                            <td> @item.StudentId</td>
+                            <td> @item.FullName</td>
+                            <td> @item.EmailAddress</td>
+                            <td> @item.City</td>
+                            <td> @item.CreatedOn</td>
+                            <td>
+                                <a onclick="DeleteStudentRecord(@item.StudentId)" class="btn btn-danger m-1">Delete</a>
+                                <a onclick="UpdateStudentRecord('@item.StudentId','@item.FullName','@item.EmailAddress','@item.City')" class="btn btn-warning">Update</a>
+                            </td> 
+                        </tr>
+                    }
+                }
+
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    function DeleteStudentRecord(studentid) {
+        let response = confirm("Do you want to delete student record?");
+        if (response) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteStudentRecord", "Student")',
+                data: { StudentId: studentid},
+                success: function (response) {
+                    if (response.message == 'Deleted Successfully') {
+                        window.location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        }
+    }
+    function UpdateStudentRecord(StudentId, FullName, EmailAddress, City) {
+        $('#StudentId').val(StudentId);
+        $('#FullName').val(FullName);
+        $('#EmailAddress').val(EmailAddress);
+        $('#City').val(City);
+    }
+</script>
